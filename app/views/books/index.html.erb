@@ -16,7 +16,10 @@
   <p>Opinion</p>
 <% @books.each do |book| %>
   <div>
-    <p><%= image_tag book.user.get_profile_image(100,100) %></p>
+    <% user = @users.find(book.user_id) %>
+    <%= link_to user_path(user.id) do %>
+      <p><%= image_tag user.get_profile_image(100,100) %></p>
+    <% end %>
     <p><%= link_to book.title, book_path(book.id) %></p>
     <p><%= book.body %></p>
   </div>

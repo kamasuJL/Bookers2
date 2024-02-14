@@ -13,6 +13,7 @@ class BooksController < ApplicationController
     else
       @books = Book.all
       @user = current_user
+      @users = User.all
       render :index
     end
   end
@@ -21,6 +22,7 @@ class BooksController < ApplicationController
     @user = current_user
     @book = Book.new
     @books = Book.all
+    @users = User.all
   end
 
   def show
