@@ -6,9 +6,15 @@
   <h4>name&emsp;<%= @user.name %></h4>
   <h4>introduction&emsp;<%= @user.introduction %></h4>
   <% if @user == current_user %>
-    <p><%= link_to "プロフィール編集", edit_user_path(@user) %></p>
+    <button type="button" class="btn btn-outline-dark">
+    <p><%= link_to edit_user_path(@user) do %>
+    <i class="fa-solid fa-user-gear" ></i>
+    <% end %>
+    </p>
+    </button>
   <% end %>
 </div>
+　　
 
 <% if user_signed_in? %>
   <h3>New book</h3>
@@ -26,7 +32,7 @@
   <p><%= image_tag @book.user.get_profile_image(100,100) %></p>
   <p><%= link_to @book.user.name, user_path(@user.id) %></p>
   <p><%= link_to @book.title, book_path(@book.id) %></p>
-  <p>Opinion：<%= @book.body %></p>
+  <p><%= @book.body %></p>
   <% if @book.user == current_user %>
     <%= link_to "Edit", edit_book_path(@book) %>
     <%= link_to "Destroy", book_path(@book), method: :delete, "data-confirm" => "Are you sure?" %>
