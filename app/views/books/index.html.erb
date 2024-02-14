@@ -1,3 +1,12 @@
+<% if @book.errors.any? %>
+  <%= @book.errors.count %>件のエラーが発生しました
+  <ul>
+    <% @book.errors.full_messages.each do |message| %>
+      <li><%= message %></li>
+    <% end %>
+  </ul>
+<% end %>
+
 <% if user_signed_in? %>
   <h3>New book</h3>
   <%= form_with model: @book do |f| %>
@@ -9,10 +18,10 @@
   <% end %>
 <% end %>
 
+  <p>Title</p>
+  <p>Opinion</p>
 <% @books.each do |book| %>
   <div>
-    <p>Title</p>
-    <p>Opinion</p>
     <p><%= image_tag book.user.get_profile_image(100,100) %></p>
     <p><%= link_to book.title, book_path(book.id) %></p>
     <p><%= book.body %></p>
